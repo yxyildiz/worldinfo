@@ -5,25 +5,19 @@ import streamlink
 import numpy as np
 import time
 
-def get_stream_url(youtube_url):
-    try:
-        # Create a Streamlink session
-        session = streamlink.Streamlink()
-        # Use a common browser user-agent to avoid being blocked
-        session.set_option("http-headers", "User-Agent=Mozilla/5.0")
-        
-        streams = session.streams(youtube_url)
-        if not streams:
-            return None
-        
-        # Try to get 360p or 480p for better performance on Cloud
-        # Fallback to 'best' if specific resolutions aren't found
-        if '360p' in streams:
-            return streams['360p'].url
-        return streams['best'].url
-    except Exception as e:
-        st.error(f"Streamlink could not open URL: {e}")
-        return None
+def get_stream_url(youtube_url, retries=3, delay=5):
+    for attempt in range(retries):
+        try:
+            session = streamlink.Streamlink()
+            session.set_option("http-headers", {"User-Agent": "Mozilla/5.0"})
+            streams = session.streams(youtube_url)
+            if streams:
+                return streams.get('360p', streams['best']).url
+        except Exception as e:
+            if attempt == retries - 1:
+                st.error(f"Streamlink error after {retries} attempts: {e}")
+            time.sleep(delay)
+    return None
 
 def main():
     st.set_page_config(page_title="YOLOv8 Streamlink", layout="wide")
