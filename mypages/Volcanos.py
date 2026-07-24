@@ -1,4 +1,3 @@
-# https://github.com/pahlisch/streamlit-app-volcano
 import pandas as pd
 import streamlit as st
 import folium
