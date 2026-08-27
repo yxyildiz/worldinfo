@@ -91,7 +91,7 @@ def build_earthquake_map(quakes):
             f"Magnitude: {magnitude}<br>"
             f"Place: {quake.place}<br>"
             f"Time: {quake.time}<br>"
-            f"URL: {quake.url}"
+            # f"URL: {quake.url}"
         )
         color = "#c92a2a" if magnitude >= 5 else "#f08c00" if magnitude >= 3 else "#1971c2"
         folium.CircleMarker(
