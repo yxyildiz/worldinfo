@@ -56,8 +56,8 @@ elif selected == "Volcanos":
     volcanos.get_volcanos()
 elif selected =='Issnow':
     issnow.iss()
-elif selected =='Satellites':
-    starlink.satellites()
+# elif selected =='Satellites':
+#    starlink.satellites()
 elif selected =='Music/Video':
     videos.music_video() 
 
