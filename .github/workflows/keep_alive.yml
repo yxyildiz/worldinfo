@@ -2,15 +2,15 @@ name: Keep Streamlit Awake
 
 on:
   schedule:
-    - cron: "0 */1 * * *"   # every 6 hours
-  workflow_dispatch:         # lets you run it manually
+    - cron: "0 */1 * * *"   # every 1 hours
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - run: |
