@@ -4,6 +4,7 @@ from playwright.sync_api import sync_playwright
 URLS = [
     "https://worldinfo.streamlit.app/",
     "https://vpnstar.streamlit.app/",
+    "https://yyildiz.grafana.net/dashboards",
 ]
 
 failed = []
